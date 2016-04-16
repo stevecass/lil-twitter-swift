@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-  var tweets:[[String:AnyObject]] = []
+  var tweets:[Tweet] = []
 
   @IBOutlet weak var tfTweetText: UITextField!
   @IBOutlet weak var tableView: UITableView!
@@ -28,7 +28,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-    cell.textLabel?.text = (tweets[indexPath.row]["content"]) as? String
+    let tweet = tweets[indexPath.row]
+    cell.textLabel?.text = tweet.content
+    cell.detailTextLabel?.text = tweet.handle
     return cell
   }
 
@@ -44,15 +46,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   }
 
   func loadTweetList() {
-        Alamofire.request(.GET, "http://localhost:3000/tweets/recent").responseJSON { (responseData) -> Void in
-          if((responseData.result.value) != nil) {
-            let swiftyJsonVar = JSON(responseData.result.value!)
-            if let data = swiftyJsonVar.arrayObject {
-              self.tweets = data as! [[String:AnyObject]]
-              self.reloadTable()
-            }
-          }
+    Alamofire.request(.GET, "http://localhost:3000/tweets/recent").responseJSON { (responseData) -> Void in
+      if((responseData.result.value) != nil) {
+        let swiftyJsonVar = JSON(responseData.result.value!)
+        if let data = swiftyJsonVar.arrayObject {
+          self.tweets = data.map({ (item) -> Tweet in
+            return Tweet(json: (JSON(item).dictionaryObject)!)
+          })
+          self.reloadTable()
         }
+      }
+    }
   }
 
 
