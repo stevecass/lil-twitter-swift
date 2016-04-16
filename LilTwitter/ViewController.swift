@@ -10,6 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+  @IBOutlet weak var tfTweetText: UITextField!
+
+  @IBAction func btnSendClicked(sender: AnyObject) {
+    let tweet = tfTweetText.text
+    print("I got clicked. Tweet text is \(tweet)")
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
