@@ -29,6 +29,40 @@
                                     <action selector="btnSendClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C4D-Rg-wzu"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5h8-oR-s0Q">
+                                <rect key="frame" x="-4" y="66" width="328" height="502"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="3v8-C7-AJm" detailTextLabel="ELn-vZ-Iiv" style="IBUITableViewCellStyleSubtitle" id="j2f-Ax-2Qv">
+                                        <rect key="frame" x="0.0" y="28" width="328" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j2f-Ax-2Qv" id="zEa-ob-W9l">
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3v8-C7-AJm">
+                                                    <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ELn-vZ-Iiv">
+                                                    <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="k2J-Lt-20P"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="4Oa-RB-miq"/>
+                                </connections>
+                            </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New tweet text" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e74-da-f2O">
                                 <rect key="frame" x="18" y="28" width="248" height="30"/>
                                 <constraints>
@@ -42,13 +76,18 @@
                         <constraints>
                             <constraint firstItem="cY4-pc-gbm" firstAttribute="leading" secondItem="e74-da-f2O" secondAttribute="trailing" constant="2" id="Anj-d8-5aR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cY4-pc-gbm" secondAttribute="trailing" id="Scx-e7-Ke5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5h8-oR-s0Q" secondAttribute="trailing" constant="-20" id="Srx-jz-Tkf"/>
+                            <constraint firstItem="5h8-oR-s0Q" firstAttribute="top" secondItem="cY4-pc-gbm" secondAttribute="bottom" constant="8" id="XCg-Tx-1Ox"/>
                             <constraint firstItem="e74-da-f2O" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="2" id="dRT-K0-PYL"/>
                             <constraint firstItem="cY4-pc-gbm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="ebw-W1-2Kx"/>
                             <constraint firstItem="e74-da-f2O" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="iEt-XC-w9i"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5h8-oR-s0Q" secondAttribute="bottom" id="k8o-Ch-oj6"/>
+                            <constraint firstItem="5h8-oR-s0Q" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="zU3-CV-pRC"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="tableView" destination="5h8-oR-s0Q" id="wPC-3B-3Sb"/>
                         <outlet property="tfTweetText" destination="e74-da-f2O" id="MnE-CN-nHc"/>
                     </connections>
                 </viewController>
