@@ -13,6 +13,7 @@
 		B0A7EFDD1CC275CB00792865 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0A7EFDC1CC275CB00792865 /* Assets.xcassets */; };
 		B0A7EFE01CC275CB00792865 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0A7EFDE1CC275CB00792865 /* LaunchScreen.storyboard */; };
 		B0F5A1E31CC2826200D8B46D /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F5A1E21CC2826200D8B46D /* Tweet.swift */; };
+		B0F5A1E51CC28D5400D8B46D /* DateIntervalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F5A1E41CC28D5400D8B46D /* DateIntervalExtension.swift */; };
 		E06240703ECF7C39F5B20842 /* Pods_LilTwitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B4A50C0CC01CCB11201B1F /* Pods_LilTwitter.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		B0A7EFDF1CC275CB00792865 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0A7EFE11CC275CB00792865 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0F5A1E21CC2826200D8B46D /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		B0F5A1E41CC28D5400D8B46D /* DateIntervalExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateIntervalExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				B0A7EFD51CC275CB00792865 /* AppDelegate.swift */,
 				B0A7EFD71CC275CB00792865 /* ViewController.swift */,
 				B0F5A1E21CC2826200D8B46D /* Tweet.swift */,
+				B0F5A1E41CC28D5400D8B46D /* DateIntervalExtension.swift */,
 				B0A7EFD91CC275CB00792865 /* Main.storyboard */,
 				B0A7EFDC1CC275CB00792865 /* Assets.xcassets */,
 				B0A7EFDE1CC275CB00792865 /* LaunchScreen.storyboard */,
@@ -215,6 +218,7 @@
 			files = (
 				B0F5A1E31CC2826200D8B46D /* Tweet.swift in Sources */,
 				B0A7EFD81CC275CB00792865 /* ViewController.swift in Sources */,
+				B0F5A1E51CC28D5400D8B46D /* DateIntervalExtension.swift in Sources */,
 				B0A7EFD61CC275CB00792865 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
