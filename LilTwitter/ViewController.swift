@@ -7,10 +7,11 @@
 //
 
 import UIKit
-
+import Alamofire
+import SwiftyJSON
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-  let tweets = ["aaa", "bbb", "ccc", "ddd", "eee", "fff", "ggg", "hhh", "iii", "jjj", "kkk", "lll", "mmm"]
+  var tweets:[[String:AnyObject]] = []
 
   @IBOutlet weak var tfTweetText: UITextField!
   @IBOutlet weak var tableView: UITableView!
@@ -27,14 +28,33 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-    cell.textLabel?.text = tweets[indexPath.row]
+    cell.textLabel?.text = (tweets[indexPath.row]["content"]) as? String
     return cell
+  }
+
+  func reloadTable() {
+    dispatch_async(dispatch_get_main_queue(), {
+      self.tableView.reloadData()
+    })
   }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+    loadTweetList()
   }
+
+  func loadTweetList() {
+        Alamofire.request(.GET, "http://localhost:3000/tweets/recent").responseJSON { (responseData) -> Void in
+          if((responseData.result.value) != nil) {
+            let swiftyJsonVar = JSON(responseData.result.value!)
+            if let data = swiftyJsonVar.arrayObject {
+              self.tweets = data as! [[String:AnyObject]]
+              self.reloadTable()
+            }
+          }
+        }
+  }
+
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
