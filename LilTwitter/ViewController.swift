@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
     let tweet = tweets[indexPath.row]
     cell.textLabel?.text = tweet.content
-    cell.detailTextLabel?.text = tweet.handle
+    cell.detailTextLabel?.text = "\(tweet.handle) \(tweet.age()) ago"
     return cell
   }
 

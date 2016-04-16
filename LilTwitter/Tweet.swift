@@ -36,4 +36,8 @@ class Tweet {
     self.updatedAt = (dateFormatter.dateFromString(json["updated_at"] as! String))!
     self.hashtagNames = JSON(json["hashtag_names"]!).arrayValue.map({ $0.string! })
   }
+
+  func age() -> String {
+    return updatedAt.getElapsedInterval()
+  }
 }
