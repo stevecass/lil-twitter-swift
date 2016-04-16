@@ -17,8 +17,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   @IBOutlet weak var tableView: UITableView!
 
   @IBAction func btnSendClicked(sender: AnyObject) {
-    let tweet = tfTweetText.text
-    print("I got clicked. Tweet text is \(tweet)")
+    if tfTweetText.text!.characters.count < 1 {
+      let alert = UIAlertController(title: "Blank tweet?", message:"Enter some text first", preferredStyle: .Alert)
+      alert.addAction(UIAlertAction(title: "OK", style: .Default) { _ in })
+      self.presentViewController(alert, animated: true){}
+    } else {
+      createTweet()
+    }
   }
 
   // UITableViewDataSource
@@ -45,6 +50,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     tableView.estimatedRowHeight = 68.0
     tableView.rowHeight = UITableViewAutomaticDimension
     loadTweetList()
+  }
+
+  func createTweet() {
+    let params = ["tweet" : ["content": tfTweetText.text!]]
+    let headers: [String : String] = [:]
+    Alamofire.request(.POST, "http://localhost:3000/tweets", parameters: params, encoding: .JSON, headers: headers).responseJSON { (responseData) -> Void in
+      let tweet = Tweet(json: JSON(responseData.result.value!).dictionaryObject!)
+      self.tweets.insert(tweet, atIndex: 0)
+      self.reloadTable()
+    }
   }
 
   func loadTweetList() {
