@@ -42,6 +42,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    tableView.estimatedRowHeight = 68.0
+    tableView.rowHeight = UITableViewAutomaticDimension
     loadTweetList()
   }
 
