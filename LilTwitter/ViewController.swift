@@ -22,7 +22,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
       alert.addAction(UIAlertAction(title: "OK", style: .Default) { _ in })
       self.presentViewController(alert, animated: true){}
     } else {
-      createTweet()
+      let enteredTweet = Tweet(content: tfTweetText.text!)
+      createTweet(enteredTweet)
     }
   }
 
@@ -34,8 +35,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
     let tweet = tweets[indexPath.row]
-    cell.textLabel?.text = tweet.content
-    cell.detailTextLabel?.text = "\(tweet.handle) \(tweet.age()) ago"
+    cell.textLabel?.text = tweet.contentForDisplay()
+    cell.detailTextLabel?.text = "\(tweet.handle!) \(tweet.age()) ago"
     return cell
   }
 
@@ -52,13 +53,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     loadTweetList()
   }
 
-  func createTweet() {
-    let params = ["tweet" : ["content": tfTweetText.text!]]
+  func createTweet(tw: Tweet) {
+    let params: [String: AnyObject] = ["hashtags" : tw.hashtagNames, "tweet": ["content": tw.content!]]
     let headers: [String : String] = [:]
     Alamofire.request(.POST, "http://localhost:3000/tweets", parameters: params, encoding: .JSON, headers: headers).responseJSON { (responseData) -> Void in
       let tweet = Tweet(json: JSON(responseData.result.value!).dictionaryObject!)
       self.tweets.insert(tweet, atIndex: 0)
       self.reloadTable()
+      dispatch_async(dispatch_get_main_queue(), {self.tfTweetText.text = "" })
+
     }
   }
 
