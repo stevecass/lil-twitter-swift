@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
   @IBOutlet weak var tfTweetText: UITextField!
   @IBOutlet weak var tableView: UITableView!
+  var refreshControl: UIRefreshControl!
 
   @IBAction func btnSendClicked(sender: AnyObject) {
     if tfTweetText.text!.characters.count < 1 {
@@ -46,8 +47,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     })
   }
 
+  func refreshTable(sender:AnyObject) {
+    loadTweetList()
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action: #selector(ViewController.refreshTable), forControlEvents: UIControlEvents.ValueChanged)
+    self.tableView.addSubview(self.refreshControl)
     tableView.estimatedRowHeight = 68.0
     tableView.rowHeight = UITableViewAutomaticDimension
     loadTweetList()
@@ -74,6 +82,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return Tweet(json: (JSON(item).dictionaryObject)!)
           })
           self.reloadTable()
+          self.refreshControl.endRefreshing()
         }
       }
     }
