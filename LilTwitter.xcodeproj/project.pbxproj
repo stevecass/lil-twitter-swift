@@ -71,11 +71,11 @@
 			children = (
 				B0A7EFD51CC275CB00792865 /* AppDelegate.swift */,
 				B0A7EFD71CC275CB00792865 /* ViewController.swift */,
+				B07436881CC450E900F3C91C /* HashtagViewController.swift */,
 				B0F5A1E21CC2826200D8B46D /* Tweet.swift */,
 				B08CD7761CC3F0C3009D37CA /* StringRegexHelper.swift */,
 				B0F5A1E41CC28D5400D8B46D /* DateIntervalExtension.swift */,
 				B0A7EFD91CC275CB00792865 /* Main.storyboard */,
-				B07436881CC450E900F3C91C /* HashtagViewController.swift */,
 				B0A7EFDC1CC275CB00792865 /* Assets.xcassets */,
 				B0A7EFDE1CC275CB00792865 /* LaunchScreen.storyboard */,
 				B0A7EFE11CC275CB00792865 /* Info.plist */,
