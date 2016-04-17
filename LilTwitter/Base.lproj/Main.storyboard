@@ -29,8 +29,8 @@
                                     <action selector="btnSendClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C4D-Rg-wzu"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5h8-oR-s0Q">
-                                <rect key="frame" x="-4" y="66" width="328" height="502"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5h8-oR-s0Q">
+                                <rect key="frame" x="-4" y="66" width="328" height="453"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="3v8-C7-AJm" detailTextLabel="ELn-vZ-Iiv" style="IBUITableViewCellStyleSubtitle" id="j2f-Ax-2Qv">
