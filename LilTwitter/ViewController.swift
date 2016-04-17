@@ -41,12 +41,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     return cell
   }
 
-  func reloadTable() {
-    dispatch_async(dispatch_get_main_queue(), {
-      self.tableView.reloadData()
-    })
-  }
-
   func refreshTable(sender:AnyObject) {
     loadTweetList()
   }
@@ -67,7 +61,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     Alamofire.request(.POST, "http://localhost:3000/tweets", parameters: params, encoding: .JSON, headers: headers).responseJSON { (responseData) -> Void in
       let tweet = Tweet(json: JSON(responseData.result.value!).dictionaryObject!)
       self.tweets.insert(tweet, atIndex: 0)
-      self.reloadTable()
+      dispatch_async(dispatch_get_main_queue(), {self.tableView.reloadData() })
       dispatch_async(dispatch_get_main_queue(), {self.tfTweetText.text = "" })
 
     }
@@ -81,8 +75,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
           self.tweets = data.map({ (item) -> Tweet in
             return Tweet(json: (JSON(item).dictionaryObject)!)
           })
-          self.reloadTable()
-          self.refreshControl.endRefreshing()
+          dispatch_async(dispatch_get_main_queue(), { self.tableView.reloadData() })
+          dispatch_async(dispatch_get_main_queue(), { self.refreshControl.endRefreshing() })
         }
       }
     }
