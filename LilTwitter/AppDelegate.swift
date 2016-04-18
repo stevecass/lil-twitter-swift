@@ -8,6 +8,12 @@
 
 import UIKit
 
+let API_BASE = "http://localhost:3000"
+let API_HT_POP = API_BASE + "/hashtags/popular"
+let API_TWEETS = API_BASE + "/tweets"
+let API_RECENT = API_BASE + "/tweets/recent"
+let API_SEARCH = API_BASE + "/tweets/search"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

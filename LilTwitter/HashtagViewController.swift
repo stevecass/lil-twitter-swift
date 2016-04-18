@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+
 class HashtagViewController : UITableViewController {
 
   var tags: [String] = []
@@ -39,7 +40,7 @@ class HashtagViewController : UITableViewController {
   }
 
   private func loadHashtags() {
-    Alamofire.request(.GET, "http://localhost:3000/hashtags/popular").responseJSON { (responseData) -> Void in
+    Alamofire.request(.GET, API_HT_POP).responseJSON { (responseData) -> Void in
       if((responseData.result.value) != nil) {
         let json = JSON(responseData.result.value!)
         if let data = json.arrayObject {

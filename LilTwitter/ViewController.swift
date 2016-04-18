@@ -58,7 +58,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   func createTweet(tw: Tweet) {
     let params: [String: AnyObject] = ["hashtags" : tw.hashtagNames, "tweet": ["content": tw.content!]]
     let headers: [String : String] = [:]
-    Alamofire.request(.POST, "http://localhost:3000/tweets", parameters: params, encoding: .JSON, headers: headers).responseJSON { (responseData) -> Void in
+    Alamofire.request(.POST, API_TWEETS, parameters: params, encoding: .JSON, headers: headers).responseJSON { (responseData) -> Void in
       let tweet = Tweet(json: JSON(responseData.result.value!).dictionaryObject!)
       self.tweets.insert(tweet, atIndex: 0)
       dispatch_async(dispatch_get_main_queue(), {self.tableView.reloadData() })
@@ -84,14 +84,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
   }
 
   func loadTweetsWithTag(tag: String) {
-    let url = "http://localhost:3000/tweets/search/\(tag)"
+    let url = "\(API_SEARCH)/\(tag)"
     loadTweetsFromUrl(url)
-
   }
 
 
   func loadTweetList() {
-    loadTweetsFromUrl("http://localhost:3000/tweets/recent")
+    loadTweetsFromUrl(API_RECENT)
   }
 
 
