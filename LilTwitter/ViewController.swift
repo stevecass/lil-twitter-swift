@@ -67,8 +67,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
   }
 
-  func loadTweetList() {
-    Alamofire.request(.GET, "http://localhost:3000/tweets/recent").responseJSON { (responseData) -> Void in
+  private func loadTweetsFromUrl(url: String) {
+    Alamofire.request(.GET, url).responseJSON { (responseData) -> Void in
       if((responseData.result.value) != nil) {
         let swiftyJsonVar = JSON(responseData.result.value!)
         if let data = swiftyJsonVar.arrayObject {
@@ -77,9 +77,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
           })
           dispatch_async(dispatch_get_main_queue(), { self.tableView.reloadData() })
           dispatch_async(dispatch_get_main_queue(), { self.refreshControl.endRefreshing() })
+          dispatch_async(dispatch_get_main_queue(), { self.tabBarController!.selectedIndex = 0 })
         }
       }
     }
+  }
+
+  func loadTweetsWithTag(tag: String) {
+    let url = "http://localhost:3000/tweets/search/\(tag)"
+    loadTweetsFromUrl(url)
+
+  }
+
+
+  func loadTweetList() {
+    loadTweetsFromUrl("http://localhost:3000/tweets/recent")
   }
 
 

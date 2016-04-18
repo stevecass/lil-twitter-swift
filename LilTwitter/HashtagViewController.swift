@@ -24,6 +24,13 @@ class HashtagViewController : UITableViewController {
     return cell
   }
 
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let tag = tags[indexPath.row]
+    print(tag)
+    let mainView = self.tabBarController!.viewControllers![0] as! ViewController
+    mainView.loadTweetsWithTag(tag)
+  }
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
